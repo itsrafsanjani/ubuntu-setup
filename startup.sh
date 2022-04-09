@@ -88,19 +88,30 @@ sudo apt-get install -f
 echo 'installing Postman' 
 snap install postman
 
-echo 'Do you wanna install extra content? (y/N)'
-read extra_content
-if echo "$extra_content" | grep -iq "^y" ;then
-	echo 'installing vlc'
-  sudo apt install vlc -y
-  sudo apt install vlc-plugin-access-extra libbluray-bdj libdvdcss2 -y
+echo 'installing vlc'
+sudo apt install vlc -y
+sudo apt install vlc-plugin-access-extra libbluray-bdj libdvdcss2 -y
 
-  echo 'installing heroku-cli'
-  curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
-  heroku --version
-else
-	echo "Okay, no problem. :) Let's finish it then!"
-fi
+echo 'installing heroku-cli'
+curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+heroku --version
+
+echo 'installing apache2'
+sudo apt install apache2 -y
+
+echo 'installing php and libapache2-mod-php'
+sudo apt install php libapache2-mod-php -y
+
+echo 'installing mysql-server'
+sudo apt install mysql-server -y
+
+echo 'installing composer'
+sudo apt update && sudo apt install wget php-cli php-zip unzip curl -y
+curl -sS https://getcomposer.org/installer |php
+sudo mv composer.phar /usr/local/bin/composer
+
+echo 'installing php-mysql'
+sudo apt install php-mysql -y
 
 
 
